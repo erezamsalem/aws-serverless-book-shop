@@ -1,0 +1,80 @@
+service: erez-amsalem-book-shop
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  environment:
+    ENV_TYPE: "${self:provider.stage}"
+    DB_URL: ${env:DB_URL}
+    STRIPE_SECRET_KEY: ${env:STRIPE_SECRET_KEY}
+
+functions:
+  createBook:
+    handler: handler.createBook
+    events:
+      - http:
+          path: api/books/createBook
+          method: post
+          cors: true
+  getBook:
+    handler: handler.getBook
+    events:
+      - http:
+          path: api/books/getBook
+          method: get
+          cors: true
+  updateBook:
+    handler: handler.updateBook
+    events:
+      - http:
+          path: api/books/updateBook
+          method: put
+          cors: true
+  deleteBook:
+    handler: handler.deleteBook
+    events:
+      - http:
+          path: api/books/deleteBook
+          method: delete
+          cors: true
+  getAllBooks:
+    handler: handler.getAllBooks
+    events:
+      - http:
+          path: api/books/getAllBooks
+          method: get
+          cors: true
+  createPaymentIntent:
+    handler: handler.createPaymentIntent
+    events:
+      - http:
+          path: api/payments/createPaymentIntent
+          method: post
+          cors: true
+  createOrder:
+    handler: handler.createOrder
+    events:
+      - http:
+          path: api/orders/createOrder
+          method: post
+          cors: true
+  getAllOrders:
+    handler: handler.getAllOrders
+    events:
+      - http:
+          path: api/orders/getAllOrders
+          method: get
+          cors: true
+
+plugins:
+  - serverless-offline
+  - serverless-prune-plugin
+  - serverless-finch
+  - serverless-dotenv-plugin
+
+custom:
+  client:
+    bucketName: erez-amsalem-bookshop
+    distributionFolder: client

@@ -1,0 +1,225 @@
+/* src/BookCard.css */
+
+/* Default styles for PC / larger screens (using Grid) */
+.book-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.book-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+.book-details {
+    margin-top: 16px;
+    text-align: center;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-details h2 {
+    font-size: 1rem;
+    line-height: 1.2;
+    margin: 10px 0;
+}
+
+.book-details p {
+    font-size: 0.9rem;
+    margin: 10px 0;
+    word-wrap: break-word;
+}
+
+.buy-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: auto; 
+    width: 100%;
+}
+
+/* Media query for smaller screens (like mobile) */
+@media (max-width: 767px) {
+    .book-card {
+        padding: 4px;
+        margin: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 50%;
+        max-width: none;
+        box-sizing: border-box; 
+    }
+    
+    .book-card:focus-within {
+        z-index: 10;
+        transform: scale(1.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+        background-color: #1c1c1c;
+    }
+
+    .book-card img {
+        max-height: 220px;
+        object-fit: contain;
+    }
+
+    .book-details {
+        margin-top: 8px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .book-details h2 {
+        font-size: 0.7rem;
+        margin: 4px 0;
+        line-height: 1.1;
+    }
+
+    .book-details p {
+        font-size: 0.55rem;
+        margin: 3px 0;
+        word-wrap: break-word;
+        line-height: 1.2;
+    }
+
+    .buy-button {
+        padding: 5px 10px;
+        font-size: 0.65rem;
+        width: 100%;
+        margin-top: auto;
+    }
+}
+
+/* --- NEW MODAL STYLES --- */
+
+.payment-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.payment-modal-content {
+    background-color: #282c34;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    border: 1px solid #444;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-title {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.modal-book-title {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.modal-card-element-container {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.modal-submit-button {
+    width: 100%;
+}
+
+.modal-loading {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1.1rem;
+}
+
+.modal-error {
+    margin-top: 15px;
+}
+
+
+/* --- STRIPE ELEMENT STYLES --- */
+
+.StripeElement {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: black;
+}
+
+.StripeElement--focus {
+    border-color: #1E90FF;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+
+/* --- OTHER STYLES --- */
+
+.buy-button:hover {
+    background-color: darkgreen;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid green;
+    padding: 20px;
+    z-index: 1000;
+    text-align: center;
+    color: green;
+    border-radius: 10px;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
